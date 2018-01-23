@@ -5,6 +5,9 @@
   "version": "1.0.0",
   "private": true,
   "license": "MIT",
+  "engines": {
+    "node": "8.9.x"
+  },
   "scripts": {
     "start": "npm run server",
     "server": "node ./server/index.js",
