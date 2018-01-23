@@ -1,0 +1,73 @@
+@require './../chat-component.vars'
+
+@keyframes npm-spinner
+  0%
+    content: '|'
+  25%
+    content: '/'
+  50%
+    content: '-'
+  75%
+    content: '\\'
+  100%
+    content: '|'
+
+:host
+  display: block
+  margin-top: $chat.message.spacing
+
+.chat-message
+
+  &__body
+    position: relative
+    line-height: $chat.lineHeight
+    min-height: unit($chat.lineHeight, 'em')
+
+    &::before
+      content: ''
+      display: none
+      color: $chat.textColors.outgoingPrompt
+
+    .chat-message.is-incoming &
+      color: $chat.textColors.incoming
+
+    .chat-message.is-outgoing &
+      color: $chat.textColors.outgoing
+
+      &::before
+        content: $chat.prompt.content
+        display: inline-block
+        width: $chat.prompt.width
+
+    .chat-message.is-status &
+      color: $chat.textColors.status
+
+    .chat-message.is-working &
+      color: $chat.textColors.working
+
+      &::before
+        display: block
+        animation: npm-spinner .5s linear infinite
+
+    ::ng-deep
+
+      p
+        display: inline
+
+      ul, ol
+        margin-left: 1em
+        padding-left: 1.4em
+
+      ul
+        list-style-type: square
+
+      ol
+        list-style-type: decimal
+
+      a
+        color: currentColor
+        text-decoration: underline
+
+        &:hover
+          color: #66afec
+

@@ -1,0 +1,34 @@
+@require './../chat-component.vars'
+
+.chat-input
+  position: relative
+
+  &__prompt
+    position: absolute
+    top: $chat.message.spacing
+    left: $chat.window.padding.y
+    width: 1em
+    height: unit($chat.lineHeight, 'em')
+    line-height: $chat.lineHeight
+    pointer-events: none
+
+    &::after
+      content: $chat.prompt.content
+      color: $chat.textColors.inputPrompt
+
+  &__textarea
+    display: block
+    width: 100%
+    height: (unit($chat.lineHeight, 'rem') + $chat.message.spacing + $chat.window.padding.y)
+    padding: $chat.message.spacing $chat.window.padding.y $chat.window.padding.x
+    border-radius: 0
+    border: none
+    background: transparent
+    font-size: 1rem
+    line-height: $chat.lineHeight
+    text-indent: $chat.prompt.width
+    color: $chat.textColors.input
+    resize: none
+
+    &:focus
+      outline: none

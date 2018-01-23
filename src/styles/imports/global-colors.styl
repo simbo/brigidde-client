@@ -1,0 +1,22 @@
+/**
+ * Colors
+ */
+
+/**
+ * Color Name Finder:
+ * http://chir.ag/projects/name-that-color/
+ */
+
+$colorValues = {
+  white:            #fff,
+  black:            #000,
+  stack:            #979897
+}
+
+$colorUseCases = {
+  text:             $colorValues.white,
+  textSecondary:    $colorValues.stack,
+  textBg:           $colorValues.black
+}
+
+$colors = merge($colorValues, $colorUseCases);

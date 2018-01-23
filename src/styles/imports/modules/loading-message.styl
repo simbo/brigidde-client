@@ -1,0 +1,14 @@
+@require 'global-vars'
+
+.loading-message
+  position: fixed
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  font-size: $fontSize.small
+  text-transform: uppercase
+  letter-spacing: .1em
+  opacity: .25
+
+  &::before
+    content: 'Loading…'

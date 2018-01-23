@@ -1,0 +1,13 @@
+version: "2.1"
+
+services:
+
+  app:
+    container_name: brigidde-client_app
+    image: simbo/node:8-alpine
+    volumes:
+      - .:/project
+    working_dir: /project
+    ports:
+      - 9000:9000
+    command: yarn start

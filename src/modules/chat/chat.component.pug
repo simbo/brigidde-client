@@ -1,0 +1,13 @@
+.chat
+
+  .chat__window
+
+    .chat__message-list(*ngIf = "messageList")
+
+      chat-message(
+        *ngFor = "let message of messageList",
+        [message] = "message"
+      )
+
+    .chat__message-input
+      chat-input

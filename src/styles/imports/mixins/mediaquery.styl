@@ -1,0 +1,108 @@
+$mediaquery = {
+  mobile: {
+    portrait: {
+      maxWidth: 425px,
+    },
+    landscape: {
+      minWidth: null
+    },
+    maxWidth: null
+  },
+  tablet: {
+    minWidth: 768px,
+    portrait: {
+      maxWidth: 896px
+    }
+    landscape: {
+      minWidth: null
+    }
+    maxWidth: 1024px
+  },
+  smallDesktop: {
+    minWidth: null,
+    maxWidth: 1280px
+  },
+  mediumDesktop: {
+    minWidth: null,
+    maxWidth: 1680px
+  },
+  largeDesktop: {
+    minWidth: null
+  }
+}
+
+$mediaquery.mobile.landscape.minWidth = ($mediaquery.mobile.portrait.maxWidth + 1)
+$mediaquery.mobile.maxWidth = ($mediaquery.tablet.minWidth - 1)
+$mediaquery.tablet.landscape.minWidth = ($mediaquery.tablet.portrait.maxWidth + 1)
+$mediaquery.smallDesktop.minWidth = ($mediaquery.tablet.maxWidth + 1)
+$mediaquery.mediumDesktop.minWidth = ($mediaquery.smallDesktop.maxWidth + 1)
+$mediaquery.largeDesktop.minWidth = ($mediaquery.mediumDesktop.maxWidth + 1)
+
+mediaquery($name)
+
+  if ($name == 'mobile-portrait')
+    @media screen and (max-width: $mediaquery.mobile.portrait.maxWidth)
+      {block}
+
+  else if ($name == 'mobile-landscape')
+    @media screen and (min-width: $mediaquery.mobile.landscape.minWidth) and (max-width: $mediaquery.mobile.maxWidth)
+      {block}
+
+  else if ($name == '>=mobile-landscape')
+    @media screen and (min-width: $mediaquery.mobile.landscape.minWidth)
+      {block}
+
+  else if ($name == 'mobile')
+    @media screen and (max-width: $mediaquery.mobile.maxWidth)
+      {block}
+
+  else if ($name == '<=tablet-portrait')
+    @media screen and (max-width: $mediaquery.tablet.portrait.maxWidth)
+      {block}
+
+  else if ($name == 'tablet-portrait')
+    @media screen and (min-width: $mediaquery.tablet.minWidth) and (max-width: $mediaquery.tablet.portrait.maxWidth)
+      {block}
+
+  else if ($name == 'tablet-landscape')
+    @media screen and (min-width: $mediaquery.tablet.landscape.minWidth) and (max-width: $mediaquery.tablet.maxWidth)
+      {block}
+
+  else if ($name == '>=tablet-landscape')
+    @media screen and (min-width: $mediaquery.tablet.landscape.minWidth)
+      {block}
+
+  else if ($name == '<=tablet')
+    @media screen and (max-width: $mediaquery.tablet.maxWidth)
+      {block}
+
+  else if ($name == 'tablet')
+    @media screen and (min-width: $mediaquery.tablet.minWidth) and (max-width: $mediaquery.tablet.maxWidth)
+      {block}
+
+  else if ($name == '>=tablet')
+    @media screen and (min-width: $mediaquery.tablet.minWidth)
+      {block}
+
+  else if ($name == 'small-desktop')
+    @media screen and (min-width: $mediaquery.smallDesktop.minWidth) and (max-width: $mediaquery.smallDesktop.maxWidth)
+      {block}
+
+  else if ($name == '>=small-desktop' || $name == 'desktop')
+    @media screen and (min-width: $mediaquery.smallDesktop.minWidth)
+      {block}
+
+  else if ($name == 'medium-desktop')
+    @media screen and (min-width: $mediaquery.mediumDesktop.minWidth) and (max-width: $mediaquery.mediumDesktop.maxWidth)
+      {block}
+
+  else if ($name == '>=medium-desktop')
+    @media screen and (min-width: $mediaquery.mediumDesktop.minWidth)
+      {block}
+
+  else if ($name == 'large-desktop')
+    @media screen and (min-width: $mediaquery.largeDesktop.minWidth)
+      {block}
+
+  else
+    {block}

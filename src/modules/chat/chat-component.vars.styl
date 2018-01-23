@@ -1,0 +1,27 @@
+@require 'global-vars'
+
+$chat = {
+  window: {
+    padding: {
+      x: 1.5rem,
+      y: 1.5rem
+    }
+  },
+  lineHeight: $lineHeight.large,
+  textColors: {
+    incoming: darken(white, 20%),
+    status: darken(white, 60%),
+    working: darken(white, 20%),
+    outgoing: darken(white, 40%),
+    outgoingPrompt: darken(white, 60%),
+    input: darken(white, 40%),
+    inputPrompt: darken(magenta, 20%)
+  }
+  message: {
+    spacing: .25rem
+  },
+  prompt: {
+    width: 1.4rem,
+    content: '❯'
+  }
+}

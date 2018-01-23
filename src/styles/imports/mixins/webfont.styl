@@ -1,0 +1,8 @@
+webfont($name, $slug, $variation, $weight = 400)
+  $fontPath = '/assets/fonts'
+  font-family: $name
+  src:
+    url($fontPath + '/' + $slug + '/woff2/' + $slug + '-' + $variation + '.woff2') format('woff2')\,
+    url($fontPath + '/' + $slug + '/woff/'  + $slug + '-' + $variation + '.woff')  format('woff')\,
+    url($fontPath + '/' + $slug + '/ttf/'   + $slug + '-' + $variation + '.ttf')   format('truetype')
+  font-weight: $weight

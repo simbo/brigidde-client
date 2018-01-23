@@ -1,0 +1,9 @@
+.chat-input
+
+  .chat-input__prompt
+
+  textarea.chat-input__textarea(
+    (keydown.enter) = "onEnterKeyDown($event)",
+    [(ngModel)] = "value"
+  )
+

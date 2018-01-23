@@ -1,0 +1,68 @@
+layer()
+  position: absolute
+  display: block
+
+layerCentered()
+  layer()
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+
+layerCenteredX()
+  layer()
+  left: 50%
+  transform: translateX(-50%)
+
+layerCenteredY()
+  layer()
+  top: 50%
+  transform: translateY(-50%)
+
+layerTopCentered()
+  layerCenteredX()
+  top: 0
+
+layerRightCentered()
+  layerCenteredY()
+  right: 0
+
+layerBottomCentered()
+  layerCenteredX()
+  bottom: 0
+
+layerLeftCentered()
+  layerCenteredY()
+  left: 0
+
+layerTopLeft()
+  layer()
+  top: 0
+  left: 0
+
+layerTopRight()
+  layer()
+  top: 0
+  right: 0
+
+layerBottomLeft()
+  layer()
+  bottom: 0
+  left: 0
+
+layerBottomRight()
+  layer()
+  bottom: 0
+  right: 0
+
+layerSpanned()
+  layerTopLeft()
+  width: 100%
+  height: 100%
+
+layerSpannedX()
+  layerTopLeft()
+  width: 100%
+
+layerSpannedY()
+  layerTopLeft()
+  height: 100%

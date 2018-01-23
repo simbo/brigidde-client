@@ -1,0 +1,26 @@
+/**
+ * Transitions
+ */
+
+$transitionDurations = {
+  fast: .2s,
+  medium: .4s
+  slow: .6s
+}
+
+$transitionTimingFunctions = {
+  fast-out-slow-in: cubic-bezier(.4, 0, .2, 1),
+  linear-out-slow-in: cubic-bezier(0, 0, .2, 1),
+  fast-out-linear-in: cubic-bezier(.4, 0, 1, 1)
+}
+
+$transitionDurations.default = $transitionDurations.fast
+$transitionTimingFunctions.default = $transitionTimingFunctions.fast-out-slow-in
+
+trans(
+  $property = all,
+  $duration = $transitionDurations.default,
+  $timingFunction = $transitionTimingFunctions.default,
+  $delay = 0s
+)
+  transition: $property $transitionDurations[$duration] || $duration $transitionTimingFunctions[$timingFunction] || $timingFunction $delay
