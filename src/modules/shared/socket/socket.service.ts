@@ -2,8 +2,8 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
+import { serverConnection } from '../server-connection/server-connection';
 import { TokenService } from './../token/token.service';
-import { SocketServiceOptions } from './socket-service-options.interface';
 import { SocketServiceEvent } from './socket-service-event.interface';
 import { SocketServiceMessage } from './socket-service-message.interface';
 import { SocketServiceConnectionState } from './socket-service-connection-state.enum';
@@ -12,7 +12,6 @@ import { SocketServiceEventType } from './socket-service-event-type.enum';
 @Injectable()
 export class SocketService {
 
-  private readonly options: SocketServiceOptions;
   private readonly eventEmitter: EventEmitter<SocketServiceEvent>;
   private readonly connectionStateSubject: BehaviorSubject<SocketServiceConnectionState>;
 
@@ -26,11 +25,6 @@ export class SocketService {
   constructor(
     private tokenService: TokenService
   ) {
-    this.options = {
-      host: APP_SERVER_HOST,
-      path: '',
-      port: APP_SERVER_PORT
-    };
     this.eventEmitter = new EventEmitter<SocketServiceEvent>();
     this.connectionStateSubject = new BehaviorSubject<SocketServiceConnectionState>(null);
     this.messageQueue = [];
@@ -124,8 +118,9 @@ export class SocketService {
 
   private initSocket(): void {
     this.autoReconnect = true;
-    let socketUrl = new URL(`ws://${this.options.host}:${this.options.port}`);
-    socketUrl.pathname = this.options.path;
+    let socketUrl = new URL(
+      `ws${serverConnection.ssl?'s':''}://${serverConnection.hostname}:${serverConnection.port}`
+    );
     socketUrl.searchParams.set('token', this.authToken);
     this.socket = new WebSocket(socketUrl.toString());
     this.socket.onerror = (event) => this.onSocketError(event);
