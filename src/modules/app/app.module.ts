@@ -7,6 +7,7 @@ import { ServerModule } from './../server/server.module';
 import { ChatModule } from './../chat/chat.module';
 import { AppComponent } from './app.component';
 import { ScreenComponent } from './screen/screen.component';
+import { StatusBarComponent } from './status-bar/status-bar.component';
 import { MessageBusService } from './message-bus/message-bus.service';
 
 @NgModule({
@@ -18,7 +19,8 @@ import { MessageBusService } from './message-bus/message-bus.service';
   ],
   declarations: [
     AppComponent,
-    ScreenComponent
+    ScreenComponent,
+    StatusBarComponent
   ],
   providers: [
     MessageBusService

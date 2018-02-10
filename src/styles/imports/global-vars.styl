@@ -5,22 +5,21 @@
  */
 
 $fontFamily = {
-  system: "-apple-system"\, "system-ui"\, "Segoe UI"\, Helvetica\, Arial\, sans-serif\, "Apple Color Emoji"\, "Segoe UI Emoji"\, "Segoe UI Symbol",
-  systemMonospace: SFMono-Regular\, Consolas\, "Liberation Mono"\, Menlo\, Courier\, monospace,
+  system: '-apple-system'\, 'system-ui'\, 'Segoe UI'\, Helvetica\, Arial\, sans-serif\, 'Apple Color Emoji'\, 'Segoe UI Emoji'\, 'Segoe UI Symbol',
+  systemMonospace: SFMono-Regular\, Consolas\, 'Liberation Mono'\, Menlo\, Courier\, monospace,
 }
 
-$fontFamily.default = 'Fira Code'\, $fontFamily.systemMonospace
-
-$fontFamily.sans = $fontFamily.default
-$fontFamily.monospace = $fontFamily.default
+$fontFamily.sans = $fontFamily.system
+$fontFamily.monospace = 'Fira Code'\, $fontFamily.systemMonospace
 
 // common used relative font-size values in em
 $fontSize = {
-  small:   .75em, // 12/16
-  medium:  1em,
-  large:   1.25em // 20/16
-  xl:      1.5em  // 24/16
-  xxl:     2em    // 32/16
+  tiny:    .6875em  // 11/16
+  small:   .75em,   // 12/16
+  medium:  1em,     // 16
+  large:   1.25em   // 20/16
+  xl:      1.5em    // 24/16
+  xxl:     2em      // 32/16
 }
 
 // line-height values relative to $fontSizes

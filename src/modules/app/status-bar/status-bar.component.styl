@@ -1,0 +1,20 @@
+@require 'global-vars'
+@require './status-bar.component.vars'
+
+:host
+  display: block
+  position: absolute
+  bottom: 0
+  left: 0
+  width: 100%
+  height: $statusBar.height
+
+.status-bar
+  display: flex
+  height: 100%
+  background: $colors.statusBarBg
+  font-size: $fontSize.tiny
+
+  &__item
+    padding: 0 .5em
+    line-height: $statusBar.height

@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
-import { MessageBusService } from './../../shared/message-bus/message-bus.service';
+import { MessageBusService } from './../../app/message-bus/message-bus.service';
 
 @Component({
   selector: 'screen',

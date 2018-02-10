@@ -12,7 +12,7 @@ const { NODE_ENV, IS_PRODUCTION } = require('./webpack/env');
 
 console.log([
   Chalk.dim('NODE_ENV'),
-  IS_PRODUCTION ? '👔 ' : '👷 ',
+  IS_PRODUCTION ? '👔' : '👷',
   Chalk[IS_PRODUCTION ? 'cyan' : 'yellow'](NODE_ENV)
 ].join(' '));
 
