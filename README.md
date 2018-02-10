@@ -1,5 +1,11 @@
+*** DEPRECATED REPOSITORY ***
+
+** The sources of this client repository are meanwhile integrated in the
+[server repository](https://github.com/simbo/brigidde). **
+
+
 brigidde-client
-==================
+===============
 
 > Chatbot client for [brigidde](https://github.com/simbo/brigidde) using angular, pug, stylus,…
 
