@@ -1,7 +1,7 @@
-*** DEPRECATED REPOSITORY ***
+***DEPRECATED REPOSITORY***
 
-** The sources of this client repository are meanwhile integrated in the
-[server repository](https://github.com/simbo/brigidde). **
+**The sources of this client repository are meanwhile integrated in the
+[server repository](https://github.com/simbo/brigidde).**
 
 
 brigidde-client
