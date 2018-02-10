@@ -1,8 +1,9 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
-import { serverConnection } from '../server-connection/server-connection';
+import { getServerBaseUrl } from './../connection-options/connection-options';
 import { TokenService } from './../token/token.service';
 import { SocketServiceEvent } from './socket-service-event.interface';
 import { SocketServiceMessage } from './socket-service-message.interface';
@@ -12,7 +13,7 @@ import { SocketServiceEventType } from './socket-service-event-type.enum';
 @Injectable()
 export class SocketService {
 
-  private readonly eventEmitter: EventEmitter<SocketServiceEvent>;
+  private readonly eventSubject: Subject<SocketServiceEvent>;
   private readonly connectionStateSubject: BehaviorSubject<SocketServiceConnectionState>;
 
   private socket: WebSocket;
@@ -25,7 +26,7 @@ export class SocketService {
   constructor(
     private tokenService: TokenService
   ) {
-    this.eventEmitter = new EventEmitter<SocketServiceEvent>();
+    this.eventSubject = new Subject<SocketServiceEvent>();
     this.connectionStateSubject = new BehaviorSubject<SocketServiceConnectionState>(null);
     this.messageQueue = [];
   }
@@ -51,25 +52,25 @@ export class SocketService {
   }
 
   public get onError(): Observable<Event> {
-    return this.eventEmitter
+    return this.eventSubject
       .filter((event) => event.type === SocketServiceEventType.Error)
       .map((event) => event.data);
   }
 
   public get onMessageReceived(): Observable<SocketServiceMessage> {
-    return this.eventEmitter
+    return this.eventSubject
       .filter((event) => event.type === SocketServiceEventType.MessageReceived)
       .map((event) => event.data);
   }
 
   public get onMessageSent(): Observable<SocketServiceMessage> {
-    return this.eventEmitter
+    return this.eventSubject
       .filter((event) => event.type === SocketServiceEventType.MessageSent)
       .map((event) => event.data);
   }
 
   public get onReconnectFailed(): Observable<number> {
-    return this.eventEmitter
+    return this.eventSubject
       .filter((event) => event.type === SocketServiceEventType.ReconnectFailed)
       .map((event) => event.data);
   }
@@ -91,7 +92,7 @@ export class SocketService {
   public send(message: SocketServiceMessage): void {
     if (this.ready) {
       this.socket.send(JSON.stringify(message));
-      this.eventEmitter.emit({
+      this.eventSubject.next({
         type: SocketServiceEventType.MessageSent,
         data: message
       });
@@ -118,9 +119,7 @@ export class SocketService {
 
   private initSocket(): void {
     this.autoReconnect = true;
-    let socketUrl = new URL(
-      `ws${serverConnection.ssl?'s':''}://${serverConnection.hostname}:${serverConnection.port}`
-    );
+    let socketUrl = getServerBaseUrl('ws');
     socketUrl.searchParams.set('token', this.authToken);
     this.socket = new WebSocket(socketUrl.toString());
     this.socket.onerror = (event) => this.onSocketError(event);
@@ -139,7 +138,7 @@ export class SocketService {
     this.updateConnectionState();
     if (this.autoReconnect) {
       if (this.autoReconnectAttempts > 0) {
-        this.eventEmitter.emit({
+        this.eventSubject.next({
           type: SocketServiceEventType.ReconnectFailed,
           data: this.autoReconnectAttempts
         });
@@ -149,14 +148,14 @@ export class SocketService {
   }
 
   private onSocketError(event: Event) {
-    this.eventEmitter.emit({
+    this.eventSubject.next({
       type: SocketServiceEventType.Error,
       data: event
     });
   }
 
   private onSocketMessage(event: MessageEvent) {
-    this.eventEmitter.emit({
+    this.eventSubject.next({
       type: SocketServiceEventType.MessageReceived,
       data: JSON.parse(event.data)
     });

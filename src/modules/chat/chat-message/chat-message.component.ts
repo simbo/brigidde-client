@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, AfterViewInit, OnDestroy} from '@angular/core';
 
-import { MessageBusService } from './../../shared/message-bus/message-bus.service';
+import { MessageBusService } from './../../app/message-bus/message-bus.service';
 import { ChatMessage } from './chat-message';
 
 @Component({

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
-import { SocketServiceMessage } from './../shared/socket/socket-service-message.interface';
-import { SocketServiceEventType } from '../shared/socket/socket-service-event-type.enum';
-import { SocketService } from './../shared/socket/socket.service';
+import { SocketServiceMessage } from './../server/socket/socket-service-message.interface';
+import { SocketServiceEventType } from '../server/socket/socket-service-event-type.enum';
+import { SocketService } from './../server/socket/socket.service';
 import { ChatMessageType } from './chat-message/chat-message-type.enum';
 import { ChatMessage } from './chat-message/chat-message';
 import { Observable } from 'rxjs/Observable';

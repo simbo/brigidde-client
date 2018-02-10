@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
-import { MessageBusService } from './../shared/message-bus/message-bus.service';
-import { TokenService } from './../shared/token/token.service';
-import { SocketService } from './../shared/socket/socket.service';
+import { MessageBusService } from './../app/message-bus/message-bus.service';
+import { TokenService } from './../server/token/token.service';
+import { SocketService } from './../server/socket/socket.service';
 import { ChatMessage } from './chat-message/chat-message';
 import { ChatService } from './chat.service';
 
@@ -12,8 +12,6 @@ import { ChatService } from './chat.service';
   templateUrl: './chat.component.pug',
   styleUrls: ['./chat.component.styl'],
   providers: [
-    TokenService,
-    SocketService,
     ChatService
   ]
 })

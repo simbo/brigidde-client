@@ -3,21 +3,25 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
 
-import { SharedModule } from '../shared/shared.module';
+import { ServerModule } from './../server/server.module';
 import { ChatModule } from './../chat/chat.module';
 import { AppComponent } from './app.component';
 import { ScreenComponent } from './screen/screen.component';
+import { MessageBusService } from './message-bus/message-bus.service';
 
 @NgModule({
   imports: [
     BrowserModule,
     HttpModule,
-    SharedModule,
+    ServerModule,
     ChatModule
   ],
   declarations: [
     AppComponent,
     ScreenComponent
+  ],
+  providers: [
+    MessageBusService
   ],
   bootstrap: [
     AppComponent

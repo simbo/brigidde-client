@@ -14,8 +14,12 @@ if (/glitch\.me$/.test(location.hostname)) {
 
 }
 
-export const serverConnection = {
+export const serverConnectionOptions = {
   hostname,
   port,
   ssl
 };
+
+export function getServerBaseUrl(protocol: 'http' | 'ws' = 'http'): URL {
+  return new URL(`${protocol}${ssl?'s':''}://${hostname}:${port}`);
+}

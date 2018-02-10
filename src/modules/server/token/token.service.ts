@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
-import { serverConnection } from '../server-connection/server-connection';
+import { getServerBaseUrl } from '../connection-options/connection-options';
 
 @Injectable()
 export class TokenService {
@@ -22,9 +22,7 @@ export class TokenService {
     if (this.token) {
       window.setTimeout(() => tokenSubject.next(this.token))
     } else {
-      const tokenUrl = new URL(
-        `http${serverConnection.ssl?'s':''}://${serverConnection.hostname}:${serverConnection.port}`
-      );
+      const tokenUrl = getServerBaseUrl();
       tokenUrl.pathname = 'token';
       this.http.get(tokenUrl.toString())
         .map((response) => response.json())

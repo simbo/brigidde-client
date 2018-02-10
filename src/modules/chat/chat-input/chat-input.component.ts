@@ -2,7 +2,7 @@ import { Component, ElementRef, AfterViewInit, AfterViewChecked, OnInit, OnDestr
 import { Subscription } from 'rxjs/Subscription';
 import * as autosize from 'autosize';
 
-import { MessageBusService } from './../../shared/message-bus/message-bus.service';
+import { MessageBusService } from './../../app/message-bus/message-bus.service';
 import { ChatService } from './../chat.service';
 
 @Component({
